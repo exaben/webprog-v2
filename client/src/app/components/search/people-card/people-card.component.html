@@ -1,0 +1,22 @@
+<!-- Felhasználók adatainak megjelenítése a cardokban -->
+<div class="card-body text-center" data-bs-toggle="modal" [attr.data-bs-target]="'#' + profile.firstname + '-' + profile.userID"  role="button" >
+        <div>
+            <img class="profile-picture-img" src="../../../../assets/img/{{profile.imagePath}}">
+            <p>{{profile.firstname}} {{profile.lastname}}</p>
+            <p>{{profile.age}}</p>
+        </div>
+</div>
+
+<!-- Üzenetküldési lehetőség a card-footerben-->
+<div class="card-footer text-end">
+        <button class="btn shadow-none btn-primary" (click)="sendMessage()" [disabled]="!checkMatch()">
+            <i class="bi bi-chat-heart"></i>
+        </button>
+</div>
+
+<!-- Modal meghívása -->
+<app-people-modal
+    [profile]="profile"
+    [user]="user"
+>
+</app-people-modal>

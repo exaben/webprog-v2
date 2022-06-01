@@ -13,7 +13,15 @@ import { MessagesService } from 'src/app/services/messages.service';
 })
 export class PeopleCardComponent implements OnInit {
 
-  
+  @Input()
+  profile!: ProfileType;
+
+
+  @Input()
+  user!: UserType;
+
+  @Input()
+  matchedList: MatchedType[] = [];
 
   constructor(private router: Router, private messageService: MessagesService, private matchingService: MatchingService) { 
   }
@@ -21,7 +29,17 @@ export class PeopleCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  
+  //beállítja a messageService-ben a kontakt személyt és átnavigál a message oldalra
+  sendMessage(){
+    this.messageService.contactId = this.profile.userID;
+    this.router.navigate(['/message']);
+  }
+
+  //ellenőrzi, hogy a felhasználó bekedvelt-e valakit
+  checkMatch(){
+    if(this.matchedList.find(m => m.likedUserId == this.profile.userID)!= undefined) return true;
+    return false;
+  }
 
   
 

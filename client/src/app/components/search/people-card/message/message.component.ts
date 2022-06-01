@@ -48,9 +48,9 @@ export class MessageComponent implements OnInit {
     this.profileService.getById(id).subscribe(
       response => {
         this.contactProfile = response;
-        
+        console.log("test", this.contactProfile);
         this.partnerName = response.firstname + " " + response.lastname;
-       
+        this.getMessage(this.user.id, this.contactProfile.userID);
       }
     )
   }
@@ -79,7 +79,30 @@ export class MessageComponent implements OnInit {
     )
   }
 
-  
+  //elküldi az üzentet
+  sendMessage() {
+    let messageInput: HTMLInputElement = this.elementRef.nativeElement.querySelector("#message");
+
+    if (messageInput.value.length > 0) {
+      let message = { senderId: this.user.id, receivedId: this.contactProfile.userID, message: messageInput.value, sendDate: this.currentDate };
+      this.messageService.post(message).subscribe(
+        response => {
+          messageInput.value = "";
+          this.getMessage(this.user.id, this.contactProfile.userID);
+        }
+      )
+    }
+  }
+
+  //lekéri a beszélgetés üzenetetit
+  getMessage(senderId: number, receivedId: number) {
+    this.messageService.getById(senderId, receivedId).subscribe(
+      response => {
+        this.messageList = response;
+        console.log(response);
+      }
+    )
+  }
 
   scroll() {
     let box: HTMLDivElement = this.elementRef.nativeElement.querySelector("#box");
