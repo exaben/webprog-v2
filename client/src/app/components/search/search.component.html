@@ -7,6 +7,8 @@
                 <app-people-card 
                     [profile]="getProfileById(p.userID)" 
                     [user]="user"
+                    [matchedList]="matchedList"
+                    (actionEmit)="fetchData()"
                 >
                 </app-people-card>
             </div>

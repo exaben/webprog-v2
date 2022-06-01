@@ -22,6 +22,9 @@ export class PeopleCardComponent implements OnInit {
 
   @Input()
   matchedList: MatchedType[] = [];
+  
+  @Output()
+  actionEmit = new EventEmitter<boolean>();
 
   constructor(private router: Router, private messageService: MessagesService, private matchingService: MatchingService) { 
   }
