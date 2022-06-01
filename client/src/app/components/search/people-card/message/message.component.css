@@ -1,0 +1,27 @@
+.message-box{
+    border-color: blue;
+    border-width: 3px;
+    border-style: solid;
+    border-radius: 10px;
+    height: 500px;
+   
+}
+
+.message{
+    border: solid 1px lightblue;
+    border-radius: 20px;
+    padding: 5px;
+    width: 250px;
+}
+
+.border-active {
+    border: solid rgb(73, 239, 73)
+}
+
+.input-group-text {
+    background-color: dodgerblue !important;
+}
+
+.form-control:focus {
+    box-shadow: none;
+}

@@ -1,0 +1,21 @@
+#http://localhost:8080/h2-console/login.jsp?jsessionid=9e3523cbded72771c9dd2627ebd87e9b
+#jdbc:h2:mem:datingapp
+#jdbc:h2:./data
+spring:
+  datasource:
+    url: jdbc:h2:./data
+    username: admin
+    password: password
+  h2:
+    console:
+      enabled: true
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+jwt:
+  secret: 9e37298f54dbddab553b69e9fa6cf0b1c5961c016c4d6a03f28f51e49f31685a
+  issuer: datingapp
+  tokenValidityInMinutes: 30
+

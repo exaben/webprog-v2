@@ -1,0 +1,118 @@
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+     <div class="card shadow-lg p-3 mb-5 rounded  position-absolute top-50 start-50 translate-middle">
+    <div class="container">
+      <h1>Regisztráció</h1>
+      <hr>
+      <div>
+        <label for="firstname"><b>Keresztnév*</b></label>
+        <input type="text" placeholder="Írja ide a keresztnevét" formControlName="firstname" id="firstname" required>
+      </div>
+        <!--Input mezo-->
+      <div *ngIf="registerForm.get('firstname')!.touched && registerForm.get('firstname')!.invalid" class="text danger" style="font-size: x-small" >
+        
+      <!--Error mezo-->
+        <div *ngIf="registerForm.get('firstname')?.errors?.required">
+          <p class="text-danger">Keresztnév megadása kötelező</p>
+        </div>
+      </div>
+
+      <div>
+        <label for="lastname"><b>Vezetéknév</b></label>
+        <input type="text" placeholder="Írja ide a Vezetéknevét" formControlName="lastname" id="lastname" required>
+      </div>
+        <!--Input mezo-->
+      <div *ngIf="registerForm.get('lastname')!.touched && registerForm.get('lastname')!.invalid" class="text danger" style="font-size: x-small" >
+        
+      <!--Error mezo-->
+        <div *ngIf="registerForm.get('lastname')?.errors?.required">
+          <p class="text-danger">Vezetéknév megadása kötelező</p>
+        </div>
+      </div>
+      
+      <div>
+        <label for="username"><b>Felhasználónév</b></label>
+        <input type="text" placeholder="Írja ide a Felhasználónevét" formControlName="username" id="username" required minlength="5">
+      </div>
+        <!--Input mezo-->
+      <div *ngIf="registerForm.get('username')!.touched && registerForm.get('username')!.invalid" class="text danger" style="font-size: x-small" >
+        
+      <!--Error mezo-->
+       
+      <div *ngIf="registerForm.get('username')?.errors?.['required']">
+          <p class="text-danger">Felhasználónév megadása kötelező</p>
+        </div>
+
+        <div *ngIf="registerForm.get('username')?.errors?.['minlength']">
+          <p class="text-danger">Adjon meg egy 5 karakterből</p>
+        </div>
+      </div>
+
+      <div>
+        <label for="email"><b>Email</b></label>
+        <input type="text" placeholder="Írja ide az email címét" formControlName="email" id="email" required>
+      </div>
+        <!--Input mezo-->
+      <div *ngIf="registerForm.get('email')!.touched && registerForm.get('email')!.invalid" class="text danger" style="font-size: x-small" >
+        
+      <!--Error mezo-->
+        <div *ngIf="registerForm.get('email')?.errors?.required">
+          <p class="text-danger">Email megadása kötelező</p>
+        </div>
+       
+      </div>
+      
+      <div>
+        <label for="birthDate"><b>Születési idő</b></label>
+        <input type="date" placeholder="Írja ide a születési idejét" formControlName="birthDate" id="birthDate" required>
+      </div>
+        <!--Input mezo-->
+      <div *ngIf="registerForm.get('birthDate')!.touched && registerForm.get('birthDate')!.invalid" class="text danger" style="font-size: x-small" >
+        
+      <!--Error mezo-->
+        <div *ngIf="registerForm.get('birthDate')?.errors?.required">
+          <p class="text-danger">Születési idő megadása kötelező</p>
+        </div>
+       
+      </div>
+
+      <div>
+        <label for="password"><b>Jelszó*</b></label>
+        <input type="password" placeholder="Írja ide a Jelszavát" formControlName="password" id="password" required>
+      </div>
+        <!--Input mezo-->
+      <div *ngIf="registerForm.get('password')!.touched && registerForm.get('password')!.invalid" class="text danger" style="font-size: x-small" >
+        
+      <!--Error mezo-->
+        <div *ngIf="registerForm.get('password')?.errors?.required">
+          <p class="text-danger">Jelszó megadása kötelező</p>
+        </div>
+      </div>
+
+      <div>
+        <label for="pswrepeat"><b>Jelszó újra*</b></label>
+        <input type="password" placeholder="Írja ide a Jelszavát újra" formControlName="pswrepeat" id="pswrepeat" required>
+      </div>
+        <!--Input mezo-->
+      <div *ngIf="registerForm.get('pswrepeat')!.touched && registerForm.get('pswrepeat')!.invalid" class="text danger" style="font-size: x-small" >
+        
+      <!--Error mezo-->
+        <div *ngIf="registerForm.get('pswrepeat')?.errors?.notSamePassword">
+          <p class="text-danger">Nem egyezik a két jelszó</p>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <button type="submit" class="registerbtn">Regisztráció</button>
+
+        <p class="text-center mt-2">
+
+          <a [routerLink]="'../login'"> Belépés</a>
+      </p>
+
+
+    </div>
+
+    </div>
+    </div>
+  </form>
+

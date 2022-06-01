@@ -1,0 +1,38 @@
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-lg-4 col-md-4 col-12">
+            <h3>Partnerek</h3>
+            <div class="row">
+                <div *ngFor="let p of profiles" class="col-md-12 col-sm-3 col-4">
+                    <button [ngClass]="contactProfile ? contactProfile.id === p.id ? 'rounded-pill border-active' : '' : '' " 
+                        class="m-2 text-start btn shadow-none" (click)="setPartner(p.userID)">
+                        {{p.firstname }} {{p.lastname }}
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-8 col-md-8 col-12">
+            <h3> {{partnerName}} </h3>
+            <div id="box" class="mt-3 message-box rounded-5 overflow-scroll p-2" >
+                <div *ngFor="let m of messageList; let i = index">
+                    <div class="d-flex" [ngClass]="user.id === m.senderId ? 'justify-content-end': 'justify-content-start'">
+                        <div class="message px-3 pt-2 mt-1">
+                            <strong> {{ user.id === m.senderId 
+                                ? userProfile.firstname + ' ' + userProfile.lastname  
+                                : contactProfile.firstname + ' ' + contactProfile.lastname }} 
+                            </strong>
+                            <p>{{ m.message }} </p>
+                            <p class="text-end small mb-0">{{ m.sendDate | date: 'Y-MM-dd H:mm:ss' }}</p>
+                        </div>
+                    </div>
+                </div>
+                {{ scroll() }}
+            </div>
+            
+            <div class="input-group mb-5 mt-3">
+                <input id="message" type="text" class="form-control" placeholder="Üzenet...">
+                <button type="button" class="input-group-text"><i class="fas fa-chevron-circle-right text-white"></i></button>
+              </div>
+        </div>
+    </div>
+</div>
