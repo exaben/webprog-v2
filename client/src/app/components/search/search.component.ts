@@ -23,12 +23,20 @@ export class SearchComponent implements OnInit {
 
   currentDate: Date = new Date();
 
+  @Output()
+  actionEmit = new EventEmitter<boolean>();
+
   constructor(private profileService: ProfileService,private userService: UserService ,private router: Router, private matchingService: MatchingService ) {
-    this.getProfiles()
+    this.fetchData();
    }
 
   ngOnInit(): void {
     
+  }
+
+  fetchData() {
+    this.getProfiles();
+    this.getMatches();
   }
 
 
@@ -48,6 +56,15 @@ export class SearchComponent implements OnInit {
   getProfileById(userId: number) : ProfileType {
     let prof = this.profile?.find(prof => prof.userID == userId  && prof.userID != this.user.id);
     return prof ? prof : {userID: 0, id: 0, firstname: "", lastname: "", description: "", age: 0, birthDate: this.currentDate, interests: [], imagePath: ""} ;
+  }
+
+  //lekéri a matcheket
+  getMatches(){
+    this.matchingService.getById(this.user.id).subscribe(
+      response => {
+        this.matchedList = response;
+      }
+    )
   }
 
 }
