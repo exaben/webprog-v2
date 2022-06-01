@@ -1,77 +1,93 @@
 <div class="container">
-  <h1>Saját profil</h1>
+  <h1>Profilom</h1>
   <hr>
-  <!-- A felhasználó név és az email cím módosítása nem lehetséges -->
-    <div><label for="username">Felhasználónév: </label>
-      <input id="username" type="text" [value]="user.username" disabled>
-    </div>
-
-    <div>
-      <label for="email">Email</label>
-      <input id="email" type="text" [value]="user.email" disabled>
-    </div>
-
-  <!-- A jelszó form-ja -->
-  <form [formGroup]="passwordForm" (ngSubmit)="onSubmitPassword()">
-    <div>
-      <label for="opassword">Régi jelszó</label>
-      <input id="opassword" type="password" formControlName="opassword" required>
-    </div>
-
-    <div>
-      <label for="password">Új jelszó</label>
-      <input type="password" formControlName="password" id="password" required>
-    </div>
-
-    <div>
-      <label for="pswrepeat">Jelszó újra</label>
-      <input type="password" formControlName="pswrepeat" id="pswrepeat" required>
-    </div>
-    <button type="submit" class="Szerkesztés" >Mentés</button>
-  </form>
-
-  <!-- A profilban szereplő többi adat formja -->
-
-  <form [formGroup]="profileForm" (ngSubmit)="onSubmitProfile()">
-    <div>
-      <label for="firstname">Keresztnév: </label>
-      <input id="firstname" type="text" formControlName="firstName">
-    </div>
-
-    <div>
-      <label for="lastname">Vezetéknév: </label>
-      <input id="lastname" type="text" formControlName="lastName">
-    </div>
-
-    <div>
-      <label for="birthDate">Születési idő</label>
-      <input id="birthDate" type="date" formControlName="birthDate">
-    </div>
-
-    <div>
-      <label for="interest">Érdeklődés: </label>
-      <select formControlName="interest" id="interest">
-        <option value="sport">Sport</option>
-        <option value="movies">Filmek</option>
-        <option value="aniimals">Állatok</option>
-        <option value="trip">Kirándulás</option>
-      </select>
-      <div class="ms-5">
-        {{ interests }}
+  <div class="row justify-content-center">
+    <div class="col-5">
+      <div class="col-sm profile-picture-div text-center">
+        <img class="profile-picture-img mb-3" src="../../../../assets/img/{{profile.imagePath}}">
+       <br>
+       <strong class=""> {{profile.firstname}} {{profile.lastname}}</strong>
       </div>
     </div>
+    <div class="col-7 border-1">
+      <!-- A felhasználó név és az email cím módosítása nem lehetséges -->
+      <div><label for="username">Felhasználónév: </label>
+        <input id="username" type="text" [value]="user.username" disabled>
+      </div>
 
-    <div><label for="description">Leírás: </label>
-      <input id="description" type="text" formControlName="description">
+      <div>
+        <label for="email">Email</label>
+        <input id="email" type="text" [value]="user.email" disabled>
+      </div>
+      <hr>
+      <!-- A jelszó form-ja -->
+      <form [formGroup]="passwordForm" (ngSubmit)="onSubmitPassword()">
+        <div>
+          <label for="opassword">Régi jelszó</label>
+          <input id="opassword" type="password" formControlName="opassword" required>
+        </div>
+
+        <div>
+          <label for="password">Új jelszó</label>
+          <input type="password" formControlName="password" id="password" required>
+        </div>
+
+        <div>
+          <label for="pswrepeat">Jelszó újra</label>
+          <input type="password" formControlName="pswrepeat" id="pswrepeat" required>
+        </div>
+        <div class="form-group">
+          <p class="text-center mt-2">
+        <button type="submit" class="Szerkesztés">Mentés</button>
+        </p>
+        </div>
+      </form>
+
+      <hr>
+      <!-- A profilban szereplő többi adat formja -->
+
+      <form [formGroup]="profileForm" (ngSubmit)="onSubmitProfile()">
+        <div>
+          <label for="firstname">Keresztnév: </label>
+          <input id="firstname" type="text" formControlName="firstName">
+        </div>
+
+        <div>
+          <label for="lastname">Vezetéknév: </label>
+          <input id="lastname" type="text" formControlName="lastName">
+        </div>
+
+        <div>
+          <label for="birthDate">Születési idő</label>
+          <input id="birthDate" type="date" formControlName="birthDate">
+        </div>
+
+        <div>
+          <label for="interest">Érdeklődés: </label>
+          <select formControlName="interest" id="interest">
+            <option value="sport">Sport</option>
+            <option value="movies">Filmek</option>
+            <option value="animals">Állatok</option>
+            <option value="trip">Kirándulás</option>
+          </select>
+          <div class="ms-5">
+            {{ interests }}
+          </div>
+        </div>
+
+        <div><label for="description">Leírás: </label>
+          <input id="description" type="text" formControlName="description">
+        </div>
+      </form>
+
+
+      <div class="form-group">
+        <p class="text-center mt-2">
+          <button (click)="profileDisable()">Mégse</button>
+          <button (click)="profileEnable()">Szerkesztés</button><br />
+          <button type="submit" class="Szerkesztés" (click)="onSubmitProfile()">Mentés</button>
+        </p>
+      </div>
     </div>
-  </form>
-
-
-  <div class="form-group">
-    <p class="text-center mt-2">
-      <button (click)="profileDisable()">Mégse</button>
-      <button (click)="profileEnable()">Szerkesztés</button><br />
-      <button type="submit" class="Szerkesztés" (click)="onSubmitProfile()">Mentés</button>
-    </p>
   </div>
 </div>
